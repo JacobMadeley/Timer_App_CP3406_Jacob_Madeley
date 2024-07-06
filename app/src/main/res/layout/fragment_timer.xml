@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.timer_app_cp3406_jacob_madeley.TimerViewModel"
+        />
+    </data>
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@{viewModel.backgroundColor}">
+
+        <TextView
+            android:id="@+id/textViewTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@{viewModel.timerText}"
+            android:textColor="@android:color/white"
+            android:textSize="36sp"
+            android:background="@android:color/black"
+            android:padding="16dp"
+            />
+
+        <Button
+            android:id="@+id/startTimerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewTimer"
+            android:layout_centerHorizontal="true"
+            android:text="@string/start"
+            android:onClick="@{() -> viewModel.startTimer()}"
+            />
+
+        <Button
+            android:id="@+id/pauseTimerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/startTimerButton"
+            android:layout_centerHorizontal="true"
+            android:text="@string/pause"
+            android:onClick="@{() -> viewModel.pauseTimer()}"
+            android:enabled="@{viewModel.isTimerRunning}"
+            />
+
+        <Button
+            android:id="@+id/resetTimerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pauseTimerButton"
+            android:layout_centerHorizontal="true"
+            android:text="@string/reset"
+            android:onClick="@{() -> viewModel.resetTimer()}"
+            />
+
+        <TextView
+            android:id="@+id/intervalsRemainingTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/resetTimerButton"
+            android:layout_centerHorizontal="true"
+            android:text="@{String.valueOf(viewModel.getIntervalsRemaining)}"
+            />
+
+    </RelativeLayout>
+</layout>
